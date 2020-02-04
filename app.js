@@ -1,7 +1,5 @@
 const express = require('express');
 
-const apiRouter = require('./routes/apiRouter');
-
 const app = express();
 
 app.use(express.urlencoded({ extended: true }));
@@ -19,14 +17,15 @@ db.authenticate()
       //   return db.sync({ force: env === 'development' });
       return db.sync();
     },
-    (err) => {
+    err => {
       console.error('Unable to connect to the database:', err);
       process.exit(1);
     }
   )
   .then(() => console.log('db sync'));
 
-app.use('/api', apiRouter);
+app.use('/api', require('./routes/apiRouter'));
+
 app.get('/', (req, res) => res.send('NodeJS API Assessment'));
 
 const port = process.env.PORT || 3000;
