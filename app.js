@@ -10,18 +10,16 @@ const env = process.env.NODE_ENV || 'development';
 const db = require('./database/database');
 
 db.authenticate()
-  .then(
-    () => {
-      console.log('Connection has been established successfully.');
+  .then(() => {
+    console.log('Connection has been established successfully.');
 
-      //   return db.sync({ force: env === 'development' });
-      return db.sync();
-    },
-    err => {
-      console.error('Unable to connect to the database:', err);
-      process.exit(1);
-    }
-  )
+    // return db.sync({ force: env === 'development' });
+    return db.sync();
+  })
+  .catch((err) => {
+    console.error('Unable to connect to the database:', err);
+    process.exit(1);
+  })
   .then(() => console.log('db sync'));
 
 app.use('/api', require('./routes/apiRouter'));
