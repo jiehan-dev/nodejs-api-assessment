@@ -1,8 +1,15 @@
 const { Sequelize } = require('sequelize');
 const { dbConfig } = require('../config/config');
+const fs = require('fs');
 
-// remove it after testing
-console.log(dbConfig);
+let dialectOptions = {};
+if (dbConfig.sslFilePath) {
+  dialectOptions = {
+    ssl: {
+      ca: fs.readFileSync(dbConfig.sslFilePath)
+    }
+  };
+}
 
 const db = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
   host: dbConfig.host,
@@ -15,7 +22,8 @@ const db = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password
   },
   define: {
     timestamps: false
-  }
+  },
+  dialectOptions: dialectOptions
 });
 
 module.exports = db;
