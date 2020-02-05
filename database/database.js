@@ -1,6 +1,9 @@
 const { Sequelize } = require('sequelize');
 const { dbConfig } = require('../config/config');
 
+// remove it after testing
+console.log(dbConfig);
+
 const db = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password, {
   host: dbConfig.host,
   dialect: 'mysql',
