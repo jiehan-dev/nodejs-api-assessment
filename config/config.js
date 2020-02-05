@@ -10,7 +10,7 @@ if (env === 'staging') {
     username: process.env.DB_USERNAME || 'jiehan@govtech-demo',
     password: process.env.DB_PASSWORD || 'q1w2e3r4Q!W@E#R$',
     database: process.env.DB_DATABASE || 'govtech_assessment_staging',
-    sslFilePath: __dirname + '\\ssl\\BaltimoreCyberTrustRoot.crt.pem'
+    sslFilePath: __dirname + '/ssl/BaltimoreCyberTrustRoot.crt.pem'
   };
 } else {
   config.dbConfig = {

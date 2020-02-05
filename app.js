@@ -5,6 +5,7 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
+console.log('Starting...');
 const db = require('./database/database');
 
 db.authenticate()
@@ -13,7 +14,7 @@ db.authenticate()
     // return db.sync({ force: true });
     return db.sync();
   })
-  .catch((err) => {
+  .catch(err => {
     console.error('Unable to connect to the database:', err);
     process.exit(1);
   })
@@ -21,7 +22,8 @@ db.authenticate()
 
 app.use('/api', require('./routes/apiRouter'));
 
-app.get('/', (req, res) => res.send('NodeJS API Assessment'));
+const env = process.env.NODE_ENV || 'development';
+app.get('/', (req, res) => res.send('NodeJS API Assessment ' + env.toUpperCase()));
 
 const port = process.env.PORT || 3000;
 
