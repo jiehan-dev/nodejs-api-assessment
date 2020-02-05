@@ -2,8 +2,6 @@ const path = require('path');
 
 const config = {};
 
-process.env.NODE_ENV = 'staging';
-
 const env = process.env.NODE_ENV || 'development';
 
 if (env === 'staging') {

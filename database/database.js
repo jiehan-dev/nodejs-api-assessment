@@ -2,8 +2,6 @@ const { Sequelize } = require('sequelize');
 const { dbConfig } = require('../config/config');
 const fs = require('fs');
 
-console.log(dbConfig);
-
 let dialectOptions = {};
 if (dbConfig.sslFilePath) {
   dialectOptions = {

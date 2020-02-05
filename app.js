@@ -5,7 +5,6 @@ const app = express();
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
-console.log('Starting...');
 const db = require('./database/database');
 
 db.authenticate()
@@ -23,7 +22,7 @@ db.authenticate()
 app.use('/api', require('./routes/apiRouter'));
 
 const env = process.env.NODE_ENV || 'development';
-app.get('/', (req, res) => res.send('NodeJS API Assessment ' + env.toUpperCase()));
+app.get('/', (req, res) => res.send(`NodeJS API Assessment ${env}`.toUpperCase()));
 
 const port = process.env.PORT || 3000;
 
