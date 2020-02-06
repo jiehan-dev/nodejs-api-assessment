@@ -5,10 +5,10 @@
 1. Have Node.js, NPM and MySQL installed on local machine.
 2. Clone the repository to your local machine.
 3. In the project directory, open a terminal and run `npm install` to install necessary modules.
-4. Create a new MySQL database with the name of 'govtech_assessment_dev' and replace the MySQL credentials in the config file '/config/config.js'.
+4. Create a new MySQL database with the name of 'govtech_assessment_dev' and replace the MySQL credentials in the project config file '/config/config.js'.
 
    ```
-   // can be found in '/config/config.js'
+   // located at '/config/config.js'
 
    // Update local MySQL credentials here!
    config.dbConfig = {
@@ -21,7 +21,7 @@
 
 5. In the project directory, open a terminal and run `npm start` to start the server. It will automatically sync the database schema.
 
-6. Alternatively, run `npm run dev` to have nodemon automatically restarting the application when file changes are detected. This command will also drop the existing tables and create the tables agin.
+6. Alternatively, run `npm run dev` to have nodemon automatically restarting the application when file changes are detected. This command will also drop the existing tables and create the tables again.
 
 7. To check on unit tests, run `npm test`.
 
@@ -46,7 +46,9 @@
 `POST https://jiehan-assessment-staging.azurewebsites.net/api/retrievefornotifications`
 
 ## API Behaviros
+
 Please note that only `register` and `retrievefornotifications` API will create new teacher and student records if there is no matching record in the database. For `suspend` and `commonstudents` API, HTTP status 404 and error message will be returned if there is no matching resources.
 
 ## Postman Collection
+
 Sample postman collection is available in the postman folder.
