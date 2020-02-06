@@ -19,11 +19,11 @@
    };
    ```
 
-5. In the project directory, open a terminal and run `npm start` to start the server. It will automatically sync the database schema.
+5. In the project directory, open a terminal and run `npm start` to start the server. It will automatically sync the database schema. (Note: make sure MySQL server is running.)
 
-6. Alternatively, run `npm run dev` to have nodemon automatically restarting the application when file changes are detected. This command will also drop the existing tables and create the tables again.
+6) Alternatively, run `npm run dev` to have nodemon automatically restarting the application when file changes are detected. This command will also drop the existing tables and create the tables again.
 
-7. To check on unit tests, run `npm test`.
+7) To check on unit tests, run `npm test`.
 
 ## Local API Endpoints
 
