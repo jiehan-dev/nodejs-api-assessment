@@ -13,6 +13,7 @@ if (env === 'staging') {
     sslFilePath: path.join(__dirname, 'ssl', 'BaltimoreCyberTrustRoot.crt.pem')
   };
 } else {
+  // Update local MySQL credentials here!
   config.dbConfig = {
     host: process.env.DB_HOST || 'localhost',
     username: process.env.DB_USERNAME || 'root',
