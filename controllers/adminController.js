@@ -22,9 +22,11 @@ function adminController(models) {
 
       teacher.addStudents(students);
 
-      res.sendStatus(204);
+      res.status(204);
+      res.end();
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      res.status(500);
+      res.json({ message: err.message });
     }
   }
 
@@ -37,7 +39,8 @@ function adminController(models) {
       });
 
       if (!student) {
-        res.status(404).json({ message: `Specified student '${studentEmail}' not found` });
+        res.status(404);
+        res.json({ message: `Specified student '${studentEmail}' not found` });
         return;
       }
 
@@ -47,9 +50,11 @@ function adminController(models) {
         });
       }
 
-      res.sendStatus(204);
+      res.status(204);
+      res.end();
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      res.status(500);
+      res.json({ message: err.message });
     }
   }
 
@@ -71,11 +76,12 @@ function adminController(models) {
 
       const teacherNotFoundMsg = teachers
         .filter((t) => t.teacher == null)
-        .map((t) => `Specified teacher '${t.email} not found'`)
+        .map((t) => `Specified teacher '${t.email}' not found`)
         .join(', ');
 
       if (teacherNotFoundMsg) {
-        res.status(404).json({ message: teacherNotFoundMsg });
+        res.status(404);
+        res.json({ message: teacherNotFoundMsg });
         return;
       }
 
@@ -89,9 +95,11 @@ function adminController(models) {
         result = result.filter((x) => studentEmailsList[i].indexOf(x) !== -1);
       }
 
-      res.status(200).json({ students: result });
+      res.status(200);
+      res.json({ students: result });
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      res.status(500);
+      res.json({ message: err.message });
     }
   }
 
@@ -104,12 +112,11 @@ function adminController(models) {
         include: models.Student
       });
 
-      if (!teacher) {
-        res.status(404).json({ message: `Specified teacher '${teacherEmail} not found` });
-        return;
-      }
+      let registeredStudents = [];
 
-      let registeredStudents = teacher.students.filter((s) => !s.suspend).map((s) => s.email);
+      if (teacher.students) {
+        registeredStudents = teacher.students.filter((s) => !s.suspend).map((s) => s.email);
+      }
 
       const re = /(?<=^@|\s@)(\w+@[^\s@]+)(?=\s|$)/g;
       const taggedStudentEmails = notification.match(re);
@@ -134,9 +141,11 @@ function adminController(models) {
         );
       }
 
-      res.status(200).json({ recipients: registeredStudents });
+      res.status(200);
+      res.json({ recipients: registeredStudents });
     } catch (err) {
-      res.status(500).json({ message: err.message });
+      res.status(500);
+      res.json({ message: err.message });
     }
   }
 
