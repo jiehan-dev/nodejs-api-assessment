@@ -25,7 +25,6 @@
 
 7. To check on unit tests, run `npm test`.
 
-
 ## Local API Endpoints
 
 `POST http://localhost:5000/api/register`
@@ -45,6 +44,9 @@
 `POST https://jiehan-assessment-staging.azurewebsites.net/api/suspend`
 
 `POST https://jiehan-assessment-staging.azurewebsites.net/api/retrievefornotifications`
+
+## API Behaviros
+Please note that only `register` and `retrievefornotifications` API will create new teacher and student records if there is no matching record in the database. For `suspend` and `commonstudents` API, HTTP status 404 and error message will be returned if there is no matching resources.
 
 ## Postman Collection
 Sample postman collection is available in the postman folder.
