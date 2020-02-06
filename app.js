@@ -13,7 +13,7 @@ db.authenticate()
     // return db.sync({ force: true });
     return db.sync();
   })
-  .catch(err => {
+  .catch((err) => {
     console.error('Unable to connect to the database:', err);
     process.exit(1);
   })
@@ -30,4 +30,4 @@ app.server = app.listen(port, () => {
   console.log(`Listening on port ${port}`);
 });
 
-module.exports = app; // to run test
+module.exports = app;

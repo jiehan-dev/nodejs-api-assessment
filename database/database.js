@@ -1,6 +1,7 @@
+const fs = require('fs');
+
 const { Sequelize } = require('sequelize');
 const { dbConfig } = require('../config/config');
-const fs = require('fs');
 
 let dialectOptions = {};
 if (dbConfig.sslFilePath) {
@@ -23,7 +24,7 @@ const db = new Sequelize(dbConfig.database, dbConfig.username, dbConfig.password
   define: {
     timestamps: false
   },
-  dialectOptions: dialectOptions
+  dialectOptions
 });
 
 module.exports = db;
